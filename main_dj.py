@@ -14,15 +14,15 @@ shuzimoban = Image.open("pic/shuzimoban.jpg")  # 41*68
 pic_save_path = os.path.join(os.path.expanduser('~'), "Desktop", "output1.jpg")
 pic_save_path2 = os.path.join(os.path.expanduser('~'), "Desktop", "output2.jpg")
 pic_save_path3 = os.path.join(os.path.expanduser('~'), "Desktop", "output3.jpg")
-def str2pic(setdata):
-    datalen=len(setdata)*41
-    whiteback = Image.new('RGB', (datalen, 68), color=(255, 255, 255) )
+def str2pic(setdata,x_len,y_len):
+    datalen=len(setdata)*x_len
+    whiteback = Image.new('RGB', (datalen, y_len), color=(255, 255, 255) )
     index_setdate=0
     for i in range(len(setdata)):
             s_num = int(setdata[i])
-            whiteback.paste(shuzimoban.crop((s_num * 41, 0, s_num * 41 + 41, 68)),
+            whiteback.paste(shuzimoban.crop((s_num * x_len, 0, (s_num + 1) * x_len, y_len)),
                             (index_setdate, 0))
-            index_setdate = index_setdate + 41
+            index_setdate = index_setdate + x_len
     return whiteback
 
 
